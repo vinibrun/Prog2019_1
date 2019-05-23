@@ -1,0 +1,6 @@
+cod_aluguel,cod_cliente,cod_carro,dia,mes,ano,diarias,valor,seguro,situacao
+1,2,4,1,5,2019,1,340,S,E
+2,4,3,2,5,2019,3,180,N,E
+3,3,2,4,5,2019,2,280,N,E
+4,1,1,6,5,2019,5,550,S,L
+5,2,4,8,5,2019,2,680,S,L

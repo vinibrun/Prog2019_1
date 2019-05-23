@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1558403033 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\alugueis.c
+
+1558403006 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\carros.c
+
+1558471830 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\clientes.c
+	<clientes.h>
+	<stdio.h>
+	<string.h>
+	<todos.h>
+
+1558471830 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\menu.c
+	<menu.h>
+	<stdio.h>
+
+1558403688 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\menu.h
+
+1558471325 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\main.c
+	<stdio.h>
+	<stdlib.h>
+	<menu.h>
+	<func_vector.h>
+	<todos.h>
+
+1558401311 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\func_vector.c
+
+1558403515 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\func_vector.h
+	<carros.h>
+	<clientes.h>
+	<alugueis.h>
+	<todos.h>
+
+1558402882 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\carros.h
+
+1558465366 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\clientes.h
+
+1558403033 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\alugueis.h
+
+1558469044 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\todos.h
+
+1558469694 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\todos.c
+	<stdio.h>
+	<string.h>
+
