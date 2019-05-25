@@ -1,5 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <todos.h>
 
 int leitura_todos_proc(){return 0;}
 int devolucao_proc(){return 0;}
@@ -7,6 +9,7 @@ int lista_atrasados_proc(){return 0;}
 int grava_todos_proc(){return 0;}
 
 int qtd_clientes_vetor = 0;
+int qtd_carros_vetor = 0;
 
 void input_int(long int *var, long int min, long int max, char *string)
 {
@@ -14,6 +17,16 @@ void input_int(long int *var, long int min, long int max, char *string)
     {
         printf(string);
         scanf(" %d", var);
+    }while(min>*var || *var>max);
+    return;
+}
+
+void input_float(float *var, float min, float max, char *string)
+{
+    do
+    {
+        printf(string);
+        scanf("%f", var);
     }while(min>*var || *var>max);
     return;
 }
@@ -26,17 +39,32 @@ void input_string(char *out, int tamanho, char *string)
     {
         printf(string);
         fgets(aux, 100, stdin);
-        aux2 = strlen(aux);
+        aux2 = strlen(aux)-1;
         //printf("%d", aux2);
         if(aux[aux2] == '\n') {
 			aux[aux2] = '\0';
         }
         //printf("%d", (aux2 != tamanho+1));
-    }while((aux2 != tamanho+1) && tamanho);
+    }while((aux2 != tamanho) && tamanho);
     strcpy(out,aux);
 }
 
 void flush_in(){
     int ch;
     while( (ch = fgetc(stdin)) != EOF && ch != '\n' ){}
+}
+
+int ler_linha(FILE *arquivo, char *temp)
+{
+    if(fgets(temp, 100, arquivo))
+    {
+        if(temp[strlen(temp)-1] == '\n') {
+			temp[strlen(temp)-1] = '\0';
+        }
+        printf("\n|:");
+        printf(temp);
+        printf(":|");
+        return 1;
+    }
+    return OK;
 }

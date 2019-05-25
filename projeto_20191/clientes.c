@@ -1,24 +1,10 @@
 #include <clientes.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <todos.h>
 
 extern clientes_t cliente[100];
-
-int ler_linha(FILE *arquivo, char *temp)
-{
-    if(fgets(temp, 100, arquivo))
-    {
-        if(temp[strlen(temp)-1] == '\n') {
-			temp[strlen(temp)-1] = '\0';
-        }
-        printf("\n|:");
-        printf(temp);
-        printf(":|");
-        return 1;
-    }
-    return 0;
-}
 
 int ler_clientes_csv(FILE *arquivo_csv, clientes_t *vetor)
 {
@@ -103,6 +89,7 @@ int leitura_clientes_proc()
         printf("Erro ao abrir arquivo");
     qtd_clientes_vetor = ler_clientes_csv(clientes_csv, cliente);
     fclose(clientes_csv);
+    return OK;
 }
 
 int info_cliente_proc()
@@ -112,7 +99,7 @@ int info_cliente_proc()
     return encontrar_cliente(codigo_cliente, cliente);
 }
 
-void printa_clinte(int codigo, clientes_t *vetor)
+void printa_cliente(int codigo, clientes_t *vetor)
 {
     printf("\nNome: \t\t%s\n"
            "Codigo: \t%d\n"
@@ -131,7 +118,7 @@ int encontrar_cliente(int codigo, clientes_t *vetor)
     if(vetor[codigo-1].codigo == codigo)
     {
         printf("Cliente encontrado!\n");
-        printa_clinte(codigo-1, vetor);
+        printa_cliente(codigo-1, vetor);
         return OK;
     }
     else
@@ -162,34 +149,92 @@ int cadastra_novo_cliente(clientes_t *vetor)
 int novo_cliente_proc()
 {
     cadastra_novo_cliente(cliente);
-    return 0;
+    return OK;
 
 
 }
-
-
-
 
 int lista_clientes_alfabetica(clientes_t *vetor)
 {
-    char counter_char1, counter_char2, counter_char3;
-    int counter_int1;
-    for(counter_char1 = 'A'; counter_char1 <= 'Z'; counter_char1++)
-        for(counter_char2 = 'a'; counter_char2 <= 'z'; counter_char2++)
-            for(counter_char3 = 'a'; counter_char3 <= 'z'; counter_char3++)
-                for(counter_int1 = 0; counter_int1 <= qtd_clientes_vetor; counter_int1++)
-                    if((vetor[counter_int1].nome[0] == counter_char1) &&
-                       (vetor[counter_int1].nome[1] == counter_char2) &&
-                       (vetor[counter_int1].nome[2] == counter_char3))
-                                printa_clinte(counter_int1, vetor);
+    clientes_t copy[qtd_clientes_vetor];
+    char temp_s[100];
+    int ordem[qtd_clientes_vetor], counter1, counter2, temp_i;
+
+    for(counter1 = 0; counter1 < qtd_clientes_vetor; counter1++)
+    {
+        strcpy(copy[counter1].nome, vetor[counter1].nome);
+        ordem[counter1] = counter1;
+    }
+
+    for(counter1 = 1; counter1 < qtd_clientes_vetor; counter1++)
+    {
+        for(counter2 = 0; counter2 < qtd_clientes_vetor-1; counter2++)
+        {
+        if(strcmp(copy[counter2].nome,copy[counter2+1].nome) > 0)
+            {
+                strcpy(temp_s,copy[counter2].nome);
+                strcpy(copy[counter2].nome,copy[counter2+1].nome);
+                strcpy(copy[counter2+1].nome,temp_s);
+
+                temp_i = ordem[counter2];
+                ordem[counter2] = ordem[counter2+1];
+                ordem[counter2+1] = temp_i;
+                printf(".");
+            }
+            printf("-");
+        }
+        printf("\n");
+    }
+
+    for(counter1 = 0; counter1 < qtd_clientes_vetor; counter1++)
+    {
+        printa_cliente(ordem[counter1],vetor);
+    }
+
     return OK;
 }
+
 
 int lista_clientes_proc()
 {
     lista_clientes_alfabetica(cliente);
-    return 0;
+    return OK;
 
 }
 
-int grava_clientes_proc(){return 0;}
+int salvar_clientes_csv(FILE *arquivo_csv, clientes_t *vetor)
+{
+    int counter;
+        fprintf(arquivo_csv, "codigo_cliente,nome,cnh,ddd,telefone\n");
+    for(counter = 0; counter < qtd_clientes_vetor; counter++)
+    {
+        fprintf(arquivo_csv, "%d", vetor[counter].codigo);
+        fprintf(arquivo_csv, ",");
+        fprintf(arquivo_csv, vetor[counter].nome);
+        fprintf(arquivo_csv, ",");
+        fprintf(arquivo_csv, vetor[counter].cnh);
+        fprintf(arquivo_csv, ",");
+        fprintf(arquivo_csv, vetor[counter].ddd);
+        fprintf(arquivo_csv, ",");
+        fprintf(arquivo_csv, vetor[counter].telefone);
+        fprintf(arquivo_csv, "\n");
+    }
+    return OK;
+}
+
+int grava_clientes_proc(){
+    FILE *clientes_csv;
+    printf("\nSalvando clientes no arquivo \"clientes.csv\"\n");
+    clientes_csv = fopen("clientes.csv", "w");
+    if(clientes_csv == NULL)
+    {
+        printf("Erro ao abrir arquivo");
+        return NOK;
+    }
+    else
+    {
+        salvar_clientes_csv(clientes_csv, cliente);
+        fclose(clientes_csv);
+        return OK;
+    }
+}
