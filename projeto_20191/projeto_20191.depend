@@ -1,14 +1,21 @@
 # depslib dependency file v1.0
-1558403033 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\alugueis.c
-
-1558757183 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\carros.c
+1559275031 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\alugueis.c
+	<alugueis.h>
+	<clientes.h>
 	<carros.h>
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<todos.h>
 
-1558796118 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\clientes.c
+1559273967 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\carros.c
+	<carros.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<todos.h>
+
+1559275149 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\clientes.c
 	<clientes.h>
 	<stdio.h>
 	<stdlib.h>
@@ -40,13 +47,16 @@
 
 1558465366 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\clientes.h
 
-1558751173 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\alugueis.h
+1559262041 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\alugueis.h
 
-1558751933 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\todos.h
+1559261681 c:\users\vinibrun\desktop\projeto_prog\projeto_20191\\todos.h
 
-1558751991 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\todos.c
+1559274743 source:c:\users\vinibrun\desktop\projeto_prog\projeto_20191\todos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<todos.h>
+	<carros.h>
+	<clientes.h>
+	<alugueis.h>
 

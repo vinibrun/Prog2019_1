@@ -62,7 +62,9 @@
 		<Extensions>
 			<code_completion />
 			<envvars />
-			<debugger />
+			<debugger>
+				<search_path add="C:\Users\ViniBrun\Desktop\projeto_prog\projeto_20191\" />
+			</debugger>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

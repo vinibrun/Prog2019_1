@@ -11,7 +11,7 @@ int ler_clientes_csv(FILE *arquivo_csv, clientes_t *vetor)
     char linha[100], temp[100], *running_ptr;
     int clientes_counter, char_counter;
     ler_linha(arquivo_csv, linha); // remove cabecalho
-    clientes_counter = 0;
+    clientes_counter = 1;
     while(ler_linha(arquivo_csv, linha))
     {
         char_counter = 0;
@@ -115,10 +115,10 @@ void printa_cliente(int codigo, clientes_t *vetor)
 }
 int encontrar_cliente(int codigo, clientes_t *vetor)
 {
-    if(vetor[codigo-1].codigo == codigo)
+    if(vetor[codigo].codigo == codigo)
     {
         printf("Cliente encontrado!\n");
-        printa_cliente(codigo-1, vetor);
+        printa_cliente(codigo, vetor);
         return OK;
     }
     else
@@ -139,9 +139,9 @@ int cadastra_novo_cliente(clientes_t *vetor)
     input_string(vetor[qtd_clientes_vetor].cnh, 11, "CNH:  ");
     input_string(vetor[qtd_clientes_vetor].ddd, 2, "DDD:  ");
     input_string(vetor[qtd_clientes_vetor].telefone, 9, "Telefone:  ");
-    vetor[qtd_clientes_vetor].codigo = qtd_clientes_vetor+1;
-    qtd_clientes_vetor++;
+    vetor[qtd_clientes_vetor].codigo = qtd_clientes_vetor;
     printf("Usuario cadastrado. Codigo: %d\n", qtd_clientes_vetor);
+    qtd_clientes_vetor++;
 
     return OK;
 }
@@ -168,7 +168,7 @@ int lista_clientes_alfabetica(clientes_t *vetor)
 
     for(counter1 = 1; counter1 < qtd_clientes_vetor; counter1++)
     {
-        for(counter2 = 0; counter2 < qtd_clientes_vetor-1; counter2++)
+        for(counter2 = 0; counter2 < qtd_clientes_vetor; counter2++)
         {
         if(strcmp(copy[counter2].nome,copy[counter2+1].nome) > 0)
             {
@@ -186,9 +186,14 @@ int lista_clientes_alfabetica(clientes_t *vetor)
         printf("\n");
     }
 
-    for(counter1 = 0; counter1 < qtd_clientes_vetor; counter1++)
+    printf("[a]");
+    for(counter1 = 1; counter1 < qtd_clientes_vetor; counter1++)
     {
+        printf("[b]");
         printa_cliente(ordem[counter1],vetor);
+
+
+        printf("[c]");
     }
 
     return OK;
@@ -206,7 +211,7 @@ int salvar_clientes_csv(FILE *arquivo_csv, clientes_t *vetor)
 {
     int counter;
         fprintf(arquivo_csv, "codigo_cliente,nome,cnh,ddd,telefone\n");
-    for(counter = 0; counter < qtd_clientes_vetor; counter++)
+    for(counter = 1; counter < qtd_clientes_vetor; counter++)
     {
         fprintf(arquivo_csv, "%d", vetor[counter].codigo);
         fprintf(arquivo_csv, ",");

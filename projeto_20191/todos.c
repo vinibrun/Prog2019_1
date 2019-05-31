@@ -2,16 +2,33 @@
 #include <stdlib.h>
 #include <string.h>
 #include <todos.h>
-
-int leitura_todos_proc(){return 0;}
-int devolucao_proc(){return 0;}
-int lista_atrasados_proc(){return 0;}
-int grava_todos_proc(){return 0;}
+#include <carros.h>
+#include <clientes.h>
+#include <alugueis.h>
 
 int qtd_clientes_vetor = 0;
 int qtd_carros_vetor = 0;
+int qtd_alugueis_vetor = 0;
 
-void input_int(long int *var, long int min, long int max, char *string)
+int leitura_todos_proc()
+{
+    leitura_carros_proc();
+    leitura_clientes_proc();
+    leitura_alugueis_proc();
+    return OK;
+}
+
+
+int grava_todos_proc()
+{
+    grava_clientes_proc();
+    grava_carros_proc();
+    grava_alugueis_proc();
+    return OK;
+}
+
+
+void input_int(int *var, int min, int max, char *string)
 {
     do
     {

@@ -13,7 +13,7 @@ int ler_carros_csv(FILE *arquivo_csv, carros_t *vetor)
     char linha[100], temp[100], *running_ptr;
     int carros_counter, char_counter;
     ler_linha(arquivo_csv, linha); // remove cabecalho
-    carros_counter = 0;
+    carros_counter = 1;
     while(ler_linha(arquivo_csv, linha))
     {
         char_counter = 0;
@@ -158,10 +158,10 @@ void printa_carro(int codigo, carros_t *vetor)
 }
 int encontrar_carro(int codigo, carros_t *vetor)
 {
-    if(vetor[codigo-1].codigo == codigo)
+    if(vetor[codigo].codigo == codigo)
     {
         printf("Carro encontrado!\n");
-        printa_carro(codigo-1, vetor);
+        printa_carro(codigo, vetor);
         return OK;
     }
     else
@@ -186,9 +186,9 @@ int cadastra_novo_carro(carros_t *vetor)
     input_float(&vetor[qtd_carros_vetor].valor_diaria, (1), (999.9), "Valor da diaria [xx.xx]:  R$");
     input_float(&vetor[qtd_carros_vetor].valor_seguro, 1.1, 999.9, "Valor do seguro [xx.xx]:  R$");
     input_int(&vetor[qtd_carros_vetor].quantidade, 1, 999, "Quantidade:  ");
-    vetor[qtd_carros_vetor].codigo = qtd_carros_vetor+1;
-    qtd_carros_vetor++;
+    vetor[qtd_carros_vetor].codigo = qtd_carros_vetor;
     printf("Carro cadastrado. Codigo: %d\n", qtd_carros_vetor);
+    qtd_carros_vetor++;
 
     return OK;
 }
